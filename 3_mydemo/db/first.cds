@@ -10,10 +10,12 @@ context airline {
         key carrid   : String(3);
             carrname : String(35);
             currcode : Currency;
+            sflight  : Association to many sflight
+                           on sflight.carrid = $self;
     }
 
     entity sflight : cuid {
-        key carrid     : String(3);
+        key carrid     : Association to scarr;
         key connid     : String(4);
             fldate     : Date;
             price      : Decimal(15, 2);

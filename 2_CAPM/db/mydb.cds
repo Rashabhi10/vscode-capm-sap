@@ -14,7 +14,7 @@ type Guid : String(32);
 
 
 context master {
-    entity bp : cuid {
+    entity bp {
         key NODE_KEY      : Guid;
             BP_ROLE       : String(2);
             EMAIL_ADDRESS : common.Email;
@@ -25,6 +25,18 @@ context master {
             BP_ID         : String(32);
             COMPANY_NAME  : String(250);
     }
+
+    annotate bp with {
+        NODE_KEY    @title : '{i18n>bp_key}';
+        BP_ROLE     @title : '{i18n>bp_role}';
+        BP_EMAIL    @title : '{i18n>bp_email}';
+        BP_PHONE    @title : '{i18n>bp_phone}';
+        BP_FAX      @title : '{i18n>bp_fax}';
+        bp_web      @title : '{i18n>bp_web}';
+        bp_add_guid @title : '{i18n>bp_add_guid}';
+        BP_ID       @title : '{i18n>bp_id}';
+        BP_COMPANY  @title : '{i18n>bp_company}';
+    };
 
     entity address {
         key NODE_KEY       : Guid;
@@ -59,12 +71,12 @@ context master {
         bankName      : String(64);
     }
 
-    entity prodtext {
-        key NODE_KEY   : Guid;
-            PARENT_KEY : Guid;
-            LANGUAGE   : String(2);
-            TEXT       : String(200);
-    }
+    // entity prodtext {
+    //     key NODE_KEY   : Guid;
+    //         PARENT_KEY : Guid;
+    //         LANGUAGE   : String(2);
+    //         TEXT       : String(200);
+    // }
 
     entity product {
         key NODE_KEY       : Guid;
@@ -89,7 +101,6 @@ context master {
 }
 
 context transaction {
-
     entity purchaseorder : common.Amount {
         key NODE_KEY         : Guid;
             PO_ID            : String(24);
